@@ -4,13 +4,12 @@ on:
   push:
     branches: [ "feature/Junit"]
     paths-ignore:
-     - target/**
-     
+     - 'target/**'
   pull_request:
-     branches: [ "feature/Junit" ]
-     paths-ignore:
-     - target/**
-     
+    branches: [ "feature/Junit" ]
+    paths-ignore:
+     - 'target/**'
+
 env:
   ENV_VAR: test
 
@@ -18,7 +17,6 @@ jobs:
   Package-test:
     runs-on: ubuntu-latest
     steps:
-    
     - name: Checkout code 
       uses: actions/checkout@v2
       
@@ -35,7 +33,7 @@ jobs:
       run: mvn -B package --file pom.xml
       
     - name: Upload JaCoCo coverage report
-        uses: actions/upload-artifact@v2
-        with:
-          name: jacoco-report
-          path: target/site/jacoco  
+      uses: actions/upload-artifact@v2
+      with:
+        name: jacoco-report
+        path: target/site/jacoco
